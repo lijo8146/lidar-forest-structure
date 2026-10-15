@@ -1,0 +1,11 @@
+{
+  "title": "Autzen classified LiDAR demonstration dataset",
+  "url": "https://media.githubusercontent.com/media/PDAL/data/ce0024257c573526389c4db9ab26e82739b8aaa9/autzen/autzen-classified.laz",
+  "sha256": "c8828215facfb4c9465c9a7db9d45cf2c0e9175a6eb5b21e89417978cc85cd51",
+  "bytes": 74416814,
+  "upstream_commit": "ce0024257c573526389c4db9ab26e82739b8aaa9",
+  "metadata_url": "https://github.com/PDAL/data/blob/ce0024257c573526389c4db9ab26e82739b8aaa9/autzen/README.md",
+  "attribution": "2010 data provided by Aaron Reyna, Watershed Sciences, Inc.; 2021 manual classifications by Max Sampson, Hobu, Inc.; distributed by PDAL for testing/evaluation.",
+  "license_note": "Upstream README does not specify a separate data license. Original/subset point clouds are downloaded/generated locally and excluded from this repository. Verify reuse terms before redistributing point data or commercial use.",
+  "context": "Mixed urban/woodland demonstration, not a representative forest inventory or field validation dataset."
+}

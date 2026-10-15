@@ -1,0 +1,44 @@
+name: Validate and build
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    defaults:
+      run:
+        shell: bash -el {0}
+    steps:
+      - uses: actions/checkout@v6
+      - uses: conda-incubator/setup-miniconda@v4
+        with:
+          miniforge-version: latest
+          environment-file: environment.yml
+          activate-environment: lidar-forest-structure
+          channels: conda-forge
+          channel-priority: strict
+      - name: Test numerical, coordinate and PDAL behavior
+        run: python -m unittest discover -s tests -v
+      - name: Download pinned real source
+        run: lidar-forest download
+      - name: Process and validate actual data
+        run: |
+          lidar-forest run
+          lidar-forest validate
+          python scripts/execute_notebook.py
+      - uses: quarto-dev/quarto-actions/setup@v2
+        with:
+          version: 1.8.27
+      - name: Build and check report
+        run: |
+          quarto render
+          python scripts/check_report.py
+      - uses: actions/upload-artifact@v7
+        with:
+          name: lidar-forest-structure-report
+          path: _site

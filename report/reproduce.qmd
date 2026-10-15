@@ -1,0 +1,53 @@
+---
+title: "Run it, inspect it, change it"
+---
+## First run
+
+From the repository root, with Conda and Quarto installed:
+
+~~~bash
+conda env create -f environment.yml
+conda activate lidar-forest-structure
+lidar-forest download
+lidar-forest run
+lidar-forest validate
+python -m unittest discover -s tests -v
+quarto preview
+~~~
+
+The download is approximately 74 MB and requires no API key. The full source is scanned in chunks; only the buffered window enters PDAL. Results go to ignored data/processed/. A source checksum mismatch is an error.
+
+The report includes committed figures and a run manifest so it renders without executing the point-cloud workflow. Running the workflow refreshes report/assets/: inspect changes before committing.
+
+## A second run
+
+Existing output directories are never overwritten. Choose a new one:
+
+~~~bash
+lidar-forest run --output work/second-run
+lidar-forest validate work/second-run
+~~~
+
+Compare scientific values and QC summaries rather than binary equality across GDAL/PDAL versions. Hashes verify one run's files, not identical compression across platforms. The tested environment inventory documents this local run; it is not a portable lockfile.
+
+## Notebook
+
+[Download the walkthrough](../notebooks/01_walkthrough.ipynb). It validates locally processed results, displays figures, inspects coordinates and interprets label disagreements. Source has no saved outputs. Run from the repository root or notebook directory. No silent downloads or synthetic substitution.
+
+## A different area
+
+Copy config/example.yml and adjust bounds within the tile. Preserve a buffer covering the interpolation radius and SMRF window. Bounds must be divisible by resolution. Inspect source classes and units.
+
+For a new source, obtain authoritative horizontal/vertical metadata and review its license and classification scheme. Unreviewed datum changes are rejected. Output metadata currently expects NAVD88: a different datum requires implementation and verification, not a configuration-label change.
+
+## Files worth reviewing
+
+- lidarforest/core.py: coordinate checks, indexing and interpolation.
+- lidarforest/workflow.py: ingestion, PDAL comparison, staged outputs.
+- data/source.json: pinned download, attribution and reuse limitation.
+- config/example.yml: processing parameters.
+- data/processed/run.json: local audit.
+- data/processed/normalized_subset.laz: original classes plus extra dimensions.
+- tests/test_core.py: numerical, coordinate and PDAL tests.
+
+GitHub CI processes and validates the actual example, executes the notebook and renders a report artifact. Publishing is a separate manual workflow. No remote repository or deployment is configured by this local build.

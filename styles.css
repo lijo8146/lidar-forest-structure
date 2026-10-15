@@ -1,0 +1,12 @@
+:root{--bs-body-bg:#faf8f2;--bs-body-color:#203d3a;--bs-link-color:#315e51}
+body{font-family:system-ui,sans-serif}h1,h2,h3{font-family:Georgia,serif;color:#203d3a}
+.navbar{background:#203d3a!important}.navbar a,.navbar-brand{color:#fff!important}
+.hero{padding:2.4rem 0;border-bottom:1px solid #ccd3c7}.eyebrow{text-transform:uppercase;letter-spacing:.14em;font-size:.8rem;color:#69745e}
+.hero h1{font-size:clamp(2.2rem,5vw,3.8rem);max-width:850px;line-height:1.08}.hero p{font-size:1.15rem;max-width:760px}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin:1.7rem 0}.card{padding:1.2rem;border:1px solid #ccd3c7;background:#f0f1e9;border-radius:4px}
+.card strong{display:block;font-size:1.7rem;font-family:Georgia,serif}.card span{font-size:.9rem}
+figure img{border-radius:4px}pre{border-left:3px solid #9b734c}table{font-size:.9rem}
+@media(max-width:650px){.cards{grid-template-columns:1fr}.hero{padding:1rem 0}h1{overflow-wrap:anywhere}}
+@media print{.navbar,.quarto-margin-sidebar{display:none}.cards{display:block}.card{break-inside:avoid}figure{break-inside:avoid}}
+
+body:has(.hero) #title-block-header{display:none}

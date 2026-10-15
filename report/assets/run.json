@@ -1,0 +1,237 @@
+{
+  "created_utc": "2026-10-15T01:17:31.140923+00:00",
+  "input_sha256": "c8828215facfb4c9465c9a7db9d45cf2c0e9175a6eb5b21e89417978cc85cd51",
+  "config": {
+    "input": "data/raw/autzen-classified.laz",
+    "target_crs": "EPSG:26910",
+    "bounds": [
+      494600,
+      4877700,
+      494850,
+      4877950
+    ],
+    "buffer_m": 20,
+    "resolution_m": 2,
+    "ground_radius_m": 10,
+    "ground_neighbors": 8,
+    "vegetation_classes": [
+      3,
+      4,
+      5
+    ],
+    "vegetation_threshold_m": 2,
+    "max_points": 2000000,
+    "vertical_reference": "NAVD88",
+    "smrf": {
+      "cell": 1.0,
+      "slope": 0.2,
+      "threshold": 0.45,
+      "scalar": 1.2,
+      "window": 16.0
+    }
+  },
+  "ingestion": {
+    "source_points": 10653336,
+    "buffered_points_before_filter": 766095,
+    "excluded_flagged_or_nonfinite": 0,
+    "retained_buffered_points": 766095,
+    "las_version": "1.4",
+    "point_format": 7,
+    "source_scales": [
+      0.01,
+      0.01,
+      0.01
+    ],
+    "source_offsets": [
+      635577.79,
+      848882.15,
+      406.14
+    ],
+    "source_header_bounds": [
+      [
+        635577.79,
+        848882.15,
+        406.14
+      ],
+      [
+        639003.73,
+        853537.66,
+        615.26
+      ]
+    ],
+    "coordinates": {
+      "source_horizontal_wkt": "PROJCRS[\"NAD83 / Oregon GIC Lambert (ft)\",BASEGEOGCRS[\"NAD83\",DATUM[\"North American Datum 1983\",ELLIPSOID[\"GRS 1980\",6378137,298.257222101,LENGTHUNIT[\"metre\",1]]],PRIMEM[\"Greenwich\",0,ANGLEUNIT[\"degree\",0.0174532925199433]],ID[\"EPSG\",4269]],CONVERSION[\"unnamed\",METHOD[\"Lambert Conic Conformal (2SP)\",ID[\"EPSG\",9802]],PARAMETER[\"Latitude of false origin\",41.75,ANGLEUNIT[\"degree\",0.0174532925199433],ID[\"EPSG\",8821]],PARAMETER[\"Longitude of false origin\",-120.5,ANGLEUNIT[\"degree\",0.0174532925199433],ID[\"EPSG\",8822]],PARAMETER[\"Latitude of 1st standard parallel\",43,ANGLEUNIT[\"degree\",0.0174532925199433],ID[\"EPSG\",8823]],PARAMETER[\"Latitude of 2nd standard parallel\",45.5,ANGLEUNIT[\"degree\",0.0174532925199433],ID[\"EPSG\",8824]],PARAMETER[\"Easting at false origin\",1312335.958,LENGTHUNIT[\"foot\",0.3048],ID[\"EPSG\",8826]],PARAMETER[\"Northing at false origin\",0,LENGTHUNIT[\"foot\",0.3048],ID[\"EPSG\",8827]]],CS[Cartesian,2],AXIS[\"easting\",east,ORDER[1],LENGTHUNIT[\"foot\",0.3048]],AXIS[\"northing\",north,ORDER[2],LENGTHUNIT[\"foot\",0.3048]],ID[\"EPSG\",2992]]",
+      "source_vertical_wkt": "VERTCRS[\"NAVD88 height (ftUS)\",VDATUM[\"North American Vertical Datum 1988\"],CS[vertical,1],AXIS[\"gravity-related height\",up,LENGTHUNIT[\"US survey foot\",0.304800609601219]],ID[\"EPSG\",6360]]",
+      "target_horizontal_wkt": "PROJCRS[\"NAD83 / UTM zone 10N\",BASEGEOGCRS[\"NAD83\",DATUM[\"North American Datum 1983\",ELLIPSOID[\"GRS 1980\",6378137,298.257222101,LENGTHUNIT[\"metre\",1]]],PRIMEM[\"Greenwich\",0,ANGLEUNIT[\"degree\",0.0174532925199433]],ID[\"EPSG\",4269]],CONVERSION[\"UTM zone 10N\",METHOD[\"Transverse Mercator\",ID[\"EPSG\",9807]],PARAMETER[\"Latitude of natural origin\",0,ANGLEUNIT[\"degree\",0.0174532925199433],ID[\"EPSG\",8801]],PARAMETER[\"Longitude of natural origin\",-123,ANGLEUNIT[\"degree\",0.0174532925199433],ID[\"EPSG\",8802]],PARAMETER[\"Scale factor at natural origin\",0.9996,SCALEUNIT[\"unity\",1],ID[\"EPSG\",8805]],PARAMETER[\"False easting\",500000,LENGTHUNIT[\"metre\",1],ID[\"EPSG\",8806]],PARAMETER[\"False northing\",0,LENGTHUNIT[\"metre\",1],ID[\"EPSG\",8807]]],CS[Cartesian,2],AXIS[\"(E)\",east,ORDER[1],LENGTHUNIT[\"metre\",1]],AXIS[\"(N)\",north,ORDER[2],LENGTHUNIT[\"metre\",1]],USAGE[SCOPE[\"Engineering survey, topographic mapping.\"],AREA[\"North America - between 126\u00b0W and 120\u00b0W - onshore and offshore. Canada - British Columbia; Northwest Territories; Yukon. United States (USA) - California; Oregon; Washington.\"],BBOX[30.54,-126,81.8,-119.99]],ID[\"EPSG\",26910]]",
+      "vertical_to_metre": 0.30480060960121924,
+      "vertical_operation": "Unit conversion only; vertical reference retained. No geoid/datum transformation.",
+      "target_vertical_reference": "NAVD88",
+      "horizontal_operation": "NAD83 / Oregon GIC Lambert (ft) -> NAD83 / UTM zone 10N (always_xy=True)"
+    }
+  },
+  "aoi_points": 539028,
+  "classification_counts": {
+    "0": 2498,
+    "2": 360015,
+    "5": 171005,
+    "6": 540,
+    "9": 3757,
+    "17": 847,
+    "19": 25,
+    "65": 59,
+    "68": 143,
+    "73": 139
+  },
+  "ground_label_comparison": {
+    "both_ground": 359817,
+    "provider_only_ground": 198,
+    "smrf_only_ground": 11540,
+    "neither_ground": 167473
+  },
+  "products": {
+    "dtm_provider": {
+      "valid_cells": 15608,
+      "total_cells": 15625,
+      "valid_fraction": 0.998912,
+      "min": 127.11112611549397,
+      "median": 129.8075045840508,
+      "p95": 130.57988394182323,
+      "max": 132.34112342118794
+    },
+    "dtm_smrf": {
+      "valid_cells": 15625,
+      "total_cells": 15625,
+      "valid_fraction": 1.0,
+      "min": 127.07744709785156,
+      "median": 129.8159710824568,
+      "p95": 130.60739506986633,
+      "max": 132.3421343688139
+    },
+    "dtm_difference_smrf_minus_provider": {
+      "valid_cells": 15608,
+      "total_cells": 15625,
+      "valid_fraction": 0.998912,
+      "min": -0.7501110589012399,
+      "median": 0.0,
+      "p95": 0.05482867516977304,
+      "max": 3.7378027136500265
+    },
+    "dsm": {
+      "valid_cells": 15115,
+      "total_cells": 15625,
+      "valid_fraction": 0.96736,
+      "min": 127.05918211836426,
+      "median": 130.8204216408433,
+      "p95": 150.08351536703074,
+      "max": 165.93040386080773
+    },
+    "surface_height": {
+      "valid_cells": 15098,
+      "total_cells": 15625,
+      "valid_fraction": 0.966272,
+      "min": -0.5137911497830174,
+      "median": 0.5754692228118685,
+      "p95": 21.01804648595747,
+      "max": 36.71776740192706
+    },
+    "vegetation_p95": {
+      "valid_cells": 7686,
+      "total_cells": 15625,
+      "valid_fraction": 0.491904,
+      "min": -0.18431838297907177,
+      "median": 6.096370700370422,
+      "p95": 23.567429688467364,
+      "max": 36.338724279901626
+    },
+    "return_density": {
+      "valid_cells": 15625,
+      "total_cells": 15625,
+      "valid_fraction": 1.0,
+      "min": 0.0,
+      "median": 7.25,
+      "p95": 18.5,
+      "max": 59.5
+    },
+    "vegetation_return_fraction_above_threshold": {
+      "valid_cells": 15101,
+      "total_cells": 15625,
+      "valid_fraction": 0.966464,
+      "min": 0.0,
+      "median": 0.0,
+      "p95": 0.7386363636363636,
+      "max": 1.0
+    },
+    "vegetation_return_count": {
+      "valid_cells": 15625,
+      "total_cells": 15625,
+      "valid_fraction": 1.0,
+      "min": 0.0,
+      "median": 0.0,
+      "p95": 45.0,
+      "max": 215.0
+    },
+    "ground_support_count": {
+      "valid_cells": 15625,
+      "total_cells": 15625,
+      "valid_fraction": 1.0,
+      "min": 0.0,
+      "median": 8.0,
+      "p95": 8.0,
+      "max": 8.0
+    },
+    "nearest_ground_distance": {
+      "valid_cells": 15608,
+      "total_cells": 15625,
+      "valid_fraction": 0.998912,
+      "min": 0.0009015854535001044,
+      "median": 0.1959530092768193,
+      "p95": 3.184043181865685,
+      "max": 9.973031526056948
+    }
+  },
+  "quality": {
+    "negative_surface_height_cells": 380,
+    "negative_vegetation_hag_returns": 249,
+    "vegetation_hag_over_60m_returns": 0,
+    "unsupported_point_hag": 255,
+    "empty_return_cells": 510,
+    "independent_accuracy_validation": false
+  },
+  "software": {
+    "python": "3.11.17",
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "laspy": "2.7.0",
+    "rasterio": "1.4.4",
+    "pyproj": "3.7.2",
+    "pdal": "3.5.3"
+  },
+  "limitations": [
+    "Mixed urban/woodland demonstration, not a representative forest inventory.",
+    "Ground-label disagreement is not classification accuracy.",
+    "Return fractions are not canopy cover, biomass, fuel load or fire risk.",
+    "No vertical datum change; unit conversion only.",
+    "IDW can bridge small gaps within radius; no independent terrain reference.",
+    "Unknown point-data reuse terms; source/subset excluded from Git."
+  ],
+  "product_sha256": {
+    "cross-section.png": "fc4c8b3d4a7a9c5d782f0897a890dbef8fe71f9f33b28fd13651eba355211c71",
+    "dsm.tif": "ba6698541a5108a4df25ab76e87bc624bda36ddeb20a3156d6cb1c4bd832761c",
+    "dtm_difference_smrf_minus_provider.tif": "18b0b290b9011f8adbca9478af74400cb91375b71aee1dfa3e67d8d2ae7fb091",
+    "dtm_provider.tif": "af7701b1ff3b0f464deb66d8ae33b9ffe392a54e0019fb3d53eb032b207c255a",
+    "dtm_smrf.tif": "73b90bc98949b677caf8745f791bf5c54250b7a31f6078206d503d2a31e85d9c",
+    "ground_support_count.tif": "0d2dcf7e49a6b0bbe0077d47e08fe384d5ea23820d13fa1bdb15a9aa85def600",
+    "nearest_ground_distance.tif": "d8bb368e40b177a4d352524b69a5e95e039c42365e6234e0efa56464cd5cc477",
+    "normalized_subset.laz": "44a3164c1bcb91f8682b6abd80114bbddb424d4867951ac4832b069884e6f80e",
+    "pdal_metadata.json": "7932cd37bb96f3df3c65fddc5296a10273e093383bf3d56a56e9dbedd437fa0f",
+    "pdal_pipeline.json": "e3d098c1944d948e2a2ea7505bb809f71ebd46913be8ccd138b6fb244af75f76",
+    "products.png": "bfcd0946a9752bc58cdffe8ad277a9902b75c172384f8a0ddffc5a61ced58bfc",
+    "return_density.tif": "d253d87dd9ba3e16f74b78c149ab080cbf9a49c02af7bcd0597babd79d382d1a",
+    "surface_height.tif": "a3c52d8bc729f8427aea12e6242e62f47a241cb1e69f590399faad29fe16a0cc",
+    "vegetation_p95.tif": "80cb90f90b1e286b64427b5bdce57749f90e84996d4657c1f42138c911b16ea0",
+    "vegetation_return_count.tif": "a2eb9dc272d64baaf9d842168d0d0680ba7992a1d5fb6d88e3ee6854b800d176",
+    "vegetation_return_fraction_above_threshold.tif": "c57636412ecb07bb9659c16a7db160ab67fa63f0b3c24c49772c3d9794b97aba",
+    "vertical-profile.png": "305b08890792e34b3b693fcc2b7b6052b46b34f1215304dc7e2313d05fc0bafe",
+    "vertical_profile.csv": "1d67f1389175c40cb275f8d36b33fc6955841cfe45e1fa51b2c7b304bdb48382"
+  }
+}

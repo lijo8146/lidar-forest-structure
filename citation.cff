@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "Please cite this software when using the workflow."
+title: "LiDAR Forest Structure"
+type: software
+version: 0.1.0
+date-released: 2026-10-14
+license: MIT
+authors:
+  - family-names: Jones
+    given-names: Lilly

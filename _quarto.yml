@@ -1,0 +1,34 @@
+project:
+  type: website
+  output-dir: _site
+  render:
+    - index.qmd
+    - report/*.qmd
+  resources:
+    - report/assets/
+    - config/example.yml
+    - data/source.json
+    - notebooks/01_walkthrough.ipynb
+website:
+  title: "LiDAR / Forest Structure"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Overview
+      - href: report/methods.qmd
+        text: Workflow
+      - href: report/quality.qmd
+        text: Quality & interpretation
+      - href: report/reproduce.qmd
+        text: Reproduce
+  page-footer: "Lilly Jones · reproducible geospatial workflow · v0.1.0"
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
+    lightbox: true
+    code-copy: true
+    link-external-newwindow: true
+execute:
+  enabled: false

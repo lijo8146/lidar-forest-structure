@@ -1,0 +1,35 @@
+name: Publish report
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: pages
+  cancel-in-progress: false
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+      - uses: quarto-dev/quarto-actions/setup@v2
+        with:
+          version: 1.8.27
+      - name: Render checked-in example report
+        run: |
+          quarto render
+          python scripts/check_report.py
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: _site
+  deploy:
+    needs: build
+    runs-on: ubuntu-24.04
+    environment:
+      name: github-pages
+    steps:
+      - uses: actions/deploy-pages@v5

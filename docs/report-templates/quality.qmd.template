@@ -1,0 +1,44 @@
+---
+title: "Quality findings, with their limits"
+---
+## What changed between ground branches?
+
+The supplied labels and SMRF disagree on **@disagreement@ of @aoi_points@ returns** (@disagreement_percent@%). This is disagreement, **not accuracy**: independent reference labels/checkpoints were not available.
+
+| Ground-label combination | AOI returns |
+|---|---:|
+@comparison_rows@
+
+![The same 6 m cross-section with supplied and SMRF ground labels.](assets/cross-section.png)
+
+Both terrain branches use identical gridding/support rules. SMRF-minus-supplied terrain has a median difference of **@diff_median@ m**, and a range of **@diff_min@ to @diff_max@ m** among supported cells. A median near zero does not erase local differences.
+
+The map limits colors to the 98th percentile of absolute differences for visibility; saturated colors may represent more extreme values. The manifest retains the full range. More ground labels or filled cells does not necessarily mean better terrain.
+
+## Missing support is a result
+
+Supplied-ground terrain supports **@terrain_valid@ of @total_cells@ cells**. Vegetation p95 is available in **@veg_valid@ cells**. Blank vegetation cells do not establish absent vegetation.
+
+| Internal check | Count |
+|---|---:|
+@quality_rows@
+
+Small negative surface heights can arise because cell maximum elevations and terrain estimates are evaluated at different locations on sloping ground. Negative point HAG can also reflect interpolation, noise or labeling. Values remain visible rather than clamped.
+
+The 60 m flag is diagnostic, not a universal height limit. Zero flagged tall returns does not certify correctness.
+
+## What vegetation products measure
+
+![Vegetation-class point heights above the supplied-ground estimate.](assets/vertical-profile.png)
+
+Profiles count returns, not leaves, vegetation mass or fuel. Sampling depends on sensor geometry, occlusion, season and detection. Cell p95 can rely on few returns: inspect local support. The histogram view spans −5 to 50 m; CSV bins preserve tails.
+
+All-class surface height can contain structures. Vegetation p95 uses supplied classes 3/4/5 and inherits their errors. Return fraction above 2 m is not canopy cover, understory density or ladder-fuel continuity.
+
+## Verification and next evidence
+
+Numerical tests cover interpolation, grid orientation, boundaries and missing support. Coordinate tests cover separate units, round-trip conversion and rejection of incomplete metadata. A synthetic flat-ground/elevated-object fixture exercises actual PDAL SMRF. The real-data run checks LAS/LAZ counts, compound CRS, raster alignment/nodata, hashes and comparison reconciliation.
+
+Hashes establish file integrity, not scientific validity. Independent checkpoints, reviewed labels and field plots would be needed for accuracy and ecological assessment.
+
+[Download the run manifest](assets/run.json) · [Reproduce it](reproduce.qmd)

@@ -1,0 +1,17 @@
+data/raw/
+data/processed/
+data/lidar-stage-*/
+work/
+_site/
+.quarto/
+__pycache__/
+*.egg-info/
+.ipynb_checkpoints/
+*.quarto_ipynb
+*_files/
+.env
+
+/.quarto/
+**/*.quarto_ipynb
+
+.ruff_cache/

@@ -1,0 +1,18 @@
+name: lidar-forest-structure
+channels: [conda-forge]
+dependencies:
+  - python=3.11
+  - python-pdal
+  - laspy>=2.6
+  - lazrs-python
+  - rasterio
+  - scipy
+  - matplotlib
+  - pyproj
+  - pyyaml
+  - nbformat
+  - nbclient
+  - ipykernel
+  - pip
+  - pip:
+      - -e .

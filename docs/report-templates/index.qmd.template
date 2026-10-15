@@ -1,0 +1,59 @@
+---
+title: "LiDAR forest structure"
+title-block-style: none
+---
+::: {.hero}
+[LAS / LAZ → TERRAIN → STRUCTURE → EVIDENCE]{.eyebrow}
+
+# What can a point cloud tell us—and what must we check first?
+A reproducible geospatial workflow by **Lilly Jones**. Follow a real public sample from compressed points through coordinate conversion, ground classification, vegetation metrics and a quality audit.
+:::
+
+::: {.cards}
+::: {.card}
+**@aoi_points@**
+returns in the 250 m study window
+:::
+::: {.card}
+**2 m**
+shared grid for terrain and structure
+:::
+::: {.card}
+**2 ground branches**
+supplied labels and experimental SMRF
+:::
+:::
+
+## Start with the result
+
+![Terrain, surface height, vegetation p95, return density, terrain differences and vegetation-return fraction. Missing observations remain blank.](report/assets/products.png)
+
+The example is mixed woodland/open space near Autzen Stadium, Oregon. It demonstrates the method; it does not establish forest inventory accuracy, fuel load or fire risk.
+
+## A workflow worth inspecting
+
+```{mermaid}
+flowchart LR
+  A["Pinned LAS/LAZ"] --> B["Inspect CRS + units"]
+  B --> C["Transform + buffer + filter"]
+  C --> D["Supplied ground"]
+  C --> E["SMRF ground"]
+  D --> F["Terrain + vegetation metrics"]
+  E --> G["Alternative terrain"]
+  F --> H["Compare + quality audit"]
+  G --> H
+```
+
+- **[Read the workflow](report/methods.qmd):** separate horizontal/vertical feet, preserve source labels and document interpolation.
+- **[Inspect quality findings](report/quality.qmd):** missing support, negative heights and ground-label disagreement.
+- **[Reproduce the analysis](report/reproduce.qmd):** CLI, notebook, configuration and checks.
+
+## Technical evidence
+
+**laspy, PDAL, pyproj, SciPy and Rasterio** produce GeoTIFFs, a normalized LAZ with extra dimensions, height profiles, figures, runtime metadata and hashes. Processing is scripted; the notebook explains and inspects results.
+
+No API key. The report renders from bundled figures and manifest. Running the analysis downloads approximately 74 MB; point data stays outside Git.
+
+## Source and scope
+
+[PDAL's source description](https://github.com/PDAL/data/blob/ce0024257c573526389c4db9ab26e82739b8aaa9/autzen/README.md) credits 2010 data to Aaron Reyna / Watershed Sciences and 2021 manual classifications to Max Sampson / Hobu. See [provenance and reuse notes](data/source.json). This independent portfolio project uses no Tribal observations or institutional endorsement.

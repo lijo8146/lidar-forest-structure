@@ -1,0 +1,19 @@
+# NAD83 / UTM zone 10N. Mixed woodland/open space south of Autzen Stadium.
+input: data/raw/autzen-classified.laz
+target_crs: EPSG:26910
+bounds: [494600, 4877700, 494850, 4877950]
+buffer_m: 20
+resolution_m: 2
+ground_radius_m: 10
+ground_neighbors: 8
+vegetation_classes: [3, 4, 5]
+vegetation_threshold_m: 2
+max_points: 2000000
+vertical_reference: NAVD88
+# Embedded vertical CRS required. Unit conversion only; no vertical datum change.
+smrf:
+  cell: 1.0
+  slope: 0.2
+  threshold: 0.45
+  scalar: 1.2
+  window: 16.0
