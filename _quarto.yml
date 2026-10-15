@@ -10,7 +10,8 @@ project:
     - data/source.json
     - notebooks/01_walkthrough.ipynb
 website:
-  title: "LiDAR / Forest Structure"
+  title: "LiDAR/Forest Structure"
+  website url: 
   navbar:
     left:
       - href: index.qmd
@@ -21,7 +22,7 @@ website:
         text: Quality & interpretation
       - href: report/reproduce.qmd
         text: Reproduce
-  page-footer: "Lilly Jones · reproducible geospatial workflow · v0.1.0"
+  page-footer: "Lilly Jones reproducible geospatial workflow v0.1.0"
 format:
   html:
     theme: cosmo

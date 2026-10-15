@@ -3,9 +3,9 @@ title: "LiDAR forest structure"
 title-block-style: none
 ---
 ::: {.hero}
-[LAS / LAZ → TERRAIN → STRUCTURE → EVIDENCE]{.eyebrow}
+[LAS/LAZ -> TERRAIN -> STRUCTURE -> EVIDENCE]{.eyebrow}
 
-# What can a point cloud tell us—and what must we check first?
+# What can a point cloud tell us and what must we check first?
 A reproducible geospatial workflow by **Lilly Jones**. Follow a real public sample from compressed points through coordinate conversion, ground classification, vegetation metrics and a quality audit.
 :::
 
@@ -28,7 +28,7 @@ supplied labels and experimental SMRF
 
 ![Terrain, surface height, vegetation p95, return density, terrain differences and vegetation-return fraction. Missing observations remain blank.](report/assets/products.png)
 
-The example is mixed woodland/open space near Autzen Stadium, Oregon. It demonstrates the method; it does not establish forest inventory accuracy, fuel load or fire risk.
+The example is mixed woodland/open space near Autzen Stadium, Oregon.                                                                        
 
 ## A workflow worth inspecting
 
@@ -52,7 +52,7 @@ flowchart LR
 
 **laspy, PDAL, pyproj, SciPy and Rasterio** produce GeoTIFFs, a normalized LAZ with extra dimensions, height profiles, figures, runtime metadata and hashes. Processing is scripted; the notebook explains and inspects results.
 
-No API key. The report renders from bundled figures and manifest. Running the analysis downloads approximately 74 MB; point data stays outside Git.
+The report renders from bundled figures and manifest. Running the analysis downloads approximately 74 MB; point data stays outside Git.
 
 ## Source and scope
 
