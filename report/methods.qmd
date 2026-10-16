@@ -3,9 +3,9 @@ title: "From compressed points to defensible products"
 ---
 ## 1. Ingest without changing the source
 
-The downloader pins an upstream commit, file size and SHA-256. Laspy reads LAS or LAZ in 500,000-point chunks. Each chunk is transformed, cropped to the **buffered** study area, and filtered before it joins the in-memory sample. A two-million-point limit prevents an accidental national-scale job. This is a compact single-tile workflow, not a distributed production pipeline.
+The downloader pins an upstream commit, file size and SHA-256. Laspy reads LAS or LAZ in 500,000-point chunks. Each chunk is transformed, cropped to the **buffered** study area, and filtered before it joins the in-memory sample. A two-million-point limit prevents an accidental national-scale job. This is a compact single-tile workflow.
 
-The source registry retains provenance. Original and exported point clouds stay out of Git. Acquisition is identified as 2010 by the upstream README; separate manual classifications date to 2021. This is mixed woodland/open space near Autzen Stadium, Oregon, not a representative forest inventory.
+The source registry retains provenance. Original and exported point clouds stay out of Git. Acquisition is identified as 2010 by the upstream README; separate manual classifications date to 2021. This is mixed woodland/open space near Autzen Stadium, Oregon.
 
 ## 2. Treat horizontal and vertical coordinates separately
 
@@ -17,24 +17,23 @@ The source registry retains provenance. Original and exported point clouds stay 
 
 One international foot is 0.3048 m. One US survey foot is approximately 0.3048006096 m. Applying a generic feet-to-metres factor to all three coordinates would ignore this distinction.
 
-The workflow reads embedded CRS, records both components as WKT and uses always_xy=True. It **transforms** known coordinates; it does not assign assumed CRS to repair missing metadata. Missing vertical metadata, conflicting vertical reference, geographic output units, or horizontal datum change stops processing. No geoid model or vertical datum conversion is applied.
+The workflow reads embedded CRS, records both components as WKT and uses always_xy=True. It **transforms** known coordinates. Missing vertical metadata, conflicting vertical reference, geographic output units, or horizontal datum change stops processing with no geoid model or vertical datum conversion is applied.
 
-GeoTIFFs store horizontal CRS plus vertical-reference and band-unit tags. LAZ carries a compound CRS. Other tools may ignore raster vertical tags: consult the run manifest.
+GeoTIFFs store horizontal CRS plus vertical-reference and band-unit tags. LAZ carries a compound CRS. Other tools may ignore raster vertical tags: consult the run manifest to verify.
 
 ## 3. Retain labels, run a separate experiment
 
-Remove withheld points, nonfinite coordinates, and noise classes 7 and 18. Retain other classes, including unclassified returns and structures. No undocumented statistical outlier removal is applied.
+Remove withheld points, nonfinite coordinates, and noise classes 7 and 18. Retain other classes, including unclassified returns and structures.                                              
 
 The supplied ground branch uses class 2. A second copy resets Classification to zero and runs [PDAL SMRF](https://pdal.io/en/stable/stages/filters.smrf.html). Parameters, actual pipeline and runtime metadata are saved. The workflow asserts unchanged point order/count before comparing labels.
 
-These are two sources of ground labels, not truth and prediction. Existing ground labels do not influence SMRF. Original vegetation labels remain available for extraction; SMRF provides an alternative ground/non-ground partition.
+These are two sources of ground labels. Existing ground labels do not influence SMRF. Original vegetation labels remain available for extraction; SMRF provides an alternative ground/non-ground partition.
 
-A 20 m buffer surrounds the 250 m window, exceeding the configured 16 m SMRF window and 10 m interpolation radius. Only the inner window is exported. This reduces edge effects without proving their absence.
+A 20 m buffer surrounds the 250 m window, exceeding the configured 16 m SMRF window and 10 m interpolation radius. Only the inner window is exported. This reduces edge effects.
 
 ## 4. Build a shared grid
 
 All products use identical bounds, 2 m resolution and north-up alignment. Bounds must be an exact multiple of resolution. East and north maximum edges are excluded so each return belongs to one cell.
-
 Terrain uses inverse-distance-squared interpolation from up to eight ground returns within 10 m. No neighbor means nodata. Support count and nearest-ground distance accompany terrain. The alternative terrain uses the same interpolation with SMRF labels.
 
 | Product | Definition | Interpretation |
@@ -44,10 +43,10 @@ Terrain uses inverse-distance-squared interpolation from up to eight ground retu
 | Surface height | DSM minus supplied DTM at cell center | CHM-style surface product; not exclusively canopy |
 | Vegetation p95 | 95th percentile of vegetation-return HAG per cell | Supplied classes 3/4/5 only; can be one return |
 | Vegetation support | Number of supported vegetation-class returns per cell | Inspect before interpreting p95 |
-| Return density | All retained returns / cell area | Return density, not pulse density |
+| Return density | All retained returns/cell area | Return density, not pulse density |
 | Vegetation return fraction | Vegetation-class returns above 2 m / all returns with supported HAG | Sampling-dependent fraction, not canopy cover |
 
-Point height above ground (HAG) uses the same IDW evaluated at each point's XY location. Negative values are retained and counted; clamping would conceal issues. Vegetation cells without observations are nodata rather than zero height. Zero density means no retained observations, not absent vegetation.
+Point height above ground (HAG) uses the same IDW evaluated at each point's XY location. Negative values are retained and counted; clamping would conceal issues. Vegetation cells without observations are nodata rather than zero height. Zero density means no retained observations.
 
 ## 5. Publish evidence of the run
 
@@ -57,8 +56,8 @@ See [quality and interpretation](quality.qmd) and [reproduction](reproduce.qmd).
 
 ## Implementation references
 
-- [laspy](https://laspy.readthedocs.io/en/latest/) — LAS/LAZ ingestion.
-- [PDAL SMRF](https://pdal.io/en/stable/stages/filters.smrf.html) — ground classification.
-- [pyproj Transformer](https://pyproj4.github.io/pyproj/stable/api/transformer.html) — transformations.
+- [laspy](https://laspy.readthedocs.io/en/latest/) LAS/LAZ ingestion.
+- [PDAL SMRF](https://pdal.io/en/stable/stages/filters.smrf.html) ground classification.
+- [pyproj Transformer](https://pyproj4.github.io/pyproj/stable/api/transformer.html) transformations.
 - [Rasterio georeferencing](https://rasterio.readthedocs.io/en/stable/topics/georeferencing.html).
 - [Pinned source metadata](https://github.com/PDAL/data/blob/ce0024257c573526389c4db9ab26e82739b8aaa9/autzen/README.md).

@@ -20,7 +20,7 @@ The map limits colors to the 98th percentile of absolute differences for visibil
 
 ## Missing support is a result
 
-Supplied-ground terrain supports **15,608 of 15,625 cells**. Vegetation p95 is available in **7,686 cells**. Blank vegetation cells do not establish absent vegetation.
+Supplied-ground terrain supports **15,608 of 15,625 cells**. Vegetation p95 is available in **7,686 cells**.                                 
 
 | Internal check | Count |
 |---|---:|
@@ -30,9 +30,9 @@ Supplied-ground terrain supports **15,608 of 15,625 cells**. Vegetation p95 is a
 | unsupported point hag | 255 |
 | empty return cells | 510 |
 
-Small negative surface heights can arise because cell maximum elevations and terrain estimates are evaluated at different locations on sloping ground. Negative point HAG can also reflect interpolation, noise or labeling. Values remain visible rather than clamped.
+Small negative surface heights can arise because cell maximum elevations and terrain estimates are evaluated at different locations on sloping ground. Negative point HAG can also reflect interpolation, noise or labeling.                               
 
-The 60 m flag is diagnostic, not a universal height limit. Zero flagged tall returns does not certify correctness.
+The 60 m flag is diagnostic.                                                                                    
 
 ## What vegetation products measure
 
@@ -46,6 +46,6 @@ All-class surface height can contain structures. Vegetation p95 uses supplied cl
 
 Numerical tests cover interpolation, grid orientation, boundaries and missing support. Coordinate tests cover separate units, round-trip conversion and rejection of incomplete metadata. A synthetic flat-ground/elevated-object fixture exercises actual PDAL SMRF. The real-data run checks LAS/LAZ counts, compound CRS, raster alignment/nodata, hashes and comparison reconciliation.
 
-Hashes establish file integrity, not scientific validity. Independent checkpoints, reviewed labels and field plots would be needed for accuracy and ecological assessment.
+Hashes establish file integrity. Independent checkpoints, reviewed labels and field plots would be needed for accuracy and ecological assessment.
 
-[Download the run manifest](assets/run.json) · [Reproduce it](reproduce.qmd)
+[Download the run manifest](assets/run.json) [Reproduce it](reproduce.qmd)
