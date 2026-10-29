@@ -27,9 +27,9 @@ def draw(out, rasters, shape, cfg, points, hag, smrf):
         "vegetation_return_fraction_above_threshold",
     ]
     titles = [
-        "Terrain / supplied ground (m NAVD88)",
-        "Surface height / all classes (m)",
-        "Vegetation return height / p95 (m)",
+        "Terrain/supplied ground (m NAVD88)",
+        "Surface height/all classes (m)",
+        "Vegetation return height/p95 (m)",
         "Retained return density (returns/m²)",
         "Terrain: SMRF minus supplied (m)",
         "Vegetation returns > threshold\n/ valid returns",
@@ -55,7 +55,7 @@ def draw(out, rasters, shape, cfg, points, hag, smrf):
             im, ax=ax, shrink=0.7, extend="both" if "difference" in name else "neither"
         )
     fig.suptitle(
-        "250 m woodland/open-space window / Autzen, Oregon\n2 m cells / blanks retain missing support",
+        "250 m woodland/open-space window/Autzen, Oregon\n2 m cells/blanks retain missing support",
         fontsize=16,
     )
     fig.savefig(out / "products.png", dpi=160)
@@ -87,8 +87,8 @@ def draw(out, rasters, shape, cfg, points, hag, smrf):
             ylabel="Elevation (m NAVD88)",
         )
         ax.legend(markerscale=3)
-    fig.suptitle("Same 6 m wide cross-section / labels compared, not validated")
-    fig.savefig(out / "cross-section.png", dpi=170)
+    fig.suptitle("Same 6 m wide cross-section/labels compared")
+    fig.savefig(out/"cross-section.png", dpi=170)
     plt.close(fig)
     veg = np.isin(points["Classification"], cfg["vegetation_classes"]) & np.isfinite(
         hag
@@ -98,8 +98,8 @@ def draw(out, rasters, shape, cfg, points, hag, smrf):
     ax.set(
         xlabel="Height above supplied-ground IDW surface (m)",
         ylabel="Vegetation-class returns",
-        title="Vertical return profile / not foliage or fuel density",
+        title="Vertical return profile (not foliage or fuel density)",
     )
     ax.axvline(0, c="#b06e42", lw=1)
-    fig.savefig(out / "vertical-profile.png", dpi=150)
+    fig.savefig(out/"vertical-profile.png", dpi=150)
     plt.close(fig)

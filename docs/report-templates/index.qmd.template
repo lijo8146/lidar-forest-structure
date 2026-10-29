@@ -3,9 +3,9 @@ title: "LiDAR forest structure"
 title-block-style: none
 ---
 ::: {.hero}
-[LAS / LAZ → TERRAIN → STRUCTURE → EVIDENCE]{.eyebrow}
+[LAS/LAZ -> TERRAIN -> STRUCTURE -> EVIDENCE]{.eyebrow}
 
-# What can a point cloud tell us—and what must we check first?
+# What can a point cloud tell us, and what must we check first?
 A reproducible geospatial workflow by **Lilly Jones**. Follow a real public sample from compressed points through coordinate conversion, ground classification, vegetation metrics and a quality audit.
 :::
 

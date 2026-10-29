@@ -7,7 +7,7 @@ from pathlib import Path
 def update(assets):
     assets = Path(assets)
     root = Path(__file__).resolve().parents[1]
-    m = json.loads((assets / "run.json").read_text(encoding="utf-8"))
+    m = json.loads((assets/"run.json").read_text(encoding="utf-8"))
     a = m["ground_label_comparison"]
     p = m["products"]
     d = p["dtm_difference_smrf_minus_provider"]
@@ -32,10 +32,10 @@ def update(assets):
         ),
     }
     for name, target in [
-        ("index", root / "index.qmd"),
-        ("quality", root / "report/quality.qmd"),
+        ("index", root/"index.qmd"),
+        ("quality", root/"report/quality.qmd"),
     ]:
-        text = (root / "docs/report-templates" / f"{name}.qmd.template").read_text(
+        text = (root/"docs/report-templates" / f"{name}.qmd.template").read_text(
             encoding="utf-8"
         )
         for key, value in values.items():
